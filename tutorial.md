@@ -192,49 +192,110 @@ ALTER WAREHOUSE [username]_WH SUSPEND; /*RESUME (시작)*/
 
 ## 1. LAB. LOADING
 
-1. table 생성
-```
+### 1. Create a Table
+
+```sql
 use warehouse [username]_wh; -- 생성한 웨어하우스 입력
-
-CREATE DATABASE [username]_VEGE_DB;
-use schema "[username]"."PUBLIC";
-
-create table vegetable_details
-(
-plant_name varchar(25)
-, root_depth_code varchar(1)
-);
-
+USE DATABASE USER01_DB;
+USE SCHEMA USER01_DB.USER01_SCHEMA;
 ```
-2. Load 할 file 선택 (https://bit.ly/3RHDM5w)
-> [로컬 다운로드](https://bit.ly/3RHDM5w)
-
-
-3. file format 생성
+```sql
+CREATE OR REPLACE TABLE USER01_DB.USER01_SCHEMA.CUSTOMERS (
+  id int,
+  first_name string,
+  last_name string,
+  email string,
+  gender string,
+  Job string);
 ```
-CREATE FILE FORMAT [DB명].[SCHEMA_명].[FILE_FORMAT명] 
-       COMPRESSION = 'AUTO' FIELD_DELIMITER = ',' RECORD_DELIMITER = '\n' 
-       SKIP_HEADER = 1 FIELD_OPTIONALLY_ENCLOSED_BY = '\042' TRIM_SPACE = FALSE 
-       ERROR_ON_COLUMN_COUNT_MISMATCH = TRUE 
-       ESCAPE = 'NONE' ESCAPE_UNENCLOSED_FIELD = '\134' DATE_FORMAT = 'AUTO' TIMESTAMP_FORMAT = 'AUTO' NULL_IF = ('\\N');
+```sql
+TRUNCATE TABLE CUSTOMERS;
+INSERT INTO CUSTOMERS
+VALUES
+(1,'Bourke','Treble','btreble0@g.co','M','Health Coach'),
+(2,'Iormina','Lahy','ilahy1@sciencedaily.com','M','Web Designer'),
+(3,'Tracy','Curwen','tcurwen2@spiegel.de','M','Analyst Programmer'),
+(4,'Megan','Omond','momond3@cyberchimps.com','F','Data Engineer'),
+(5,'Bryana','Coton','bcoton4@google.nl','F','Web Designer'),
+(6,'Christoffer','Woolward','cwoolward5@imgur.com','F','Health Coach'),
+(7,'Olympia','Pappin','opappin6@unesco.org','F','Analyst Programmer'),
+(8,'Grant','Sandal','gsandal7@cpanel.net','M','Analyst Programmer'),
+(9,'Elias','Bertomier','ebertomier8@tmall.com','M','Data Engineer'),
+(10,'Rex','Kinzel','rkinzel9@yellowpages.com','M','Design Engineer')
+;
 ```
+![image](https://user-images.githubusercontent.com/52474199/217439044-6f6c4f3c-8bd8-4020-8a3e-1b0b6abdea27.png)
 
---제공된 txt파일을 data load wizard를 통해 로딩(pdf 자료 참고)
+### 2. Create a File Format
+```
+CREATE OR REPLACE FILE FORMAT USER01_DB.USER01_SCHEMA.USER01_FF_UNLOAD
+TYPE = CSV COMPRESSION = NONE FIELD_DELIMITER = ',' FILE_EXTENSION = 'CSV'  SKIP_HEADER = 0;
 
-![image](https://user-images.githubusercontent.com/52474199/177914492-5daca478-5789-4f9c-8e69-8b8ec285ca63.png)
-
-![image](https://user-images.githubusercontent.com/52474199/177914538-cc2a1a58-9d49-4305-985a-1076470f4adc.png)
-
-![image](https://user-images.githubusercontent.com/52474199/177914554-736b0569-1c28-44d0-b223-788eba423427.png)
-
-![image](https://user-images.githubusercontent.com/52474199/177914597-213f9646-56a0-47e2-ba4d-31f8a334d49e.png)
-
+DESC FILE FORMAT USER01_FF_UNLOAD;
+```
+![image](https://user-images.githubusercontent.com/52474199/217439166-8ba5cf30-10ec-4196-ae6a-8aa447708e23.png)
 
 
-![image](https://user-images.githubusercontent.com/52474199/177914907-fd64dac4-e92d-4c02-a565-7b2571c81a8d.png)
+### 3. Create a Stage
 
-![image](https://user-images.githubusercontent.com/52474199/217207935-a7a385d0-ef43-45bd-ad3c-26fb1754e272.png)
+```sql
+CREATE OR REPLACE STAGE USER01_STAGE_UNLOAD
+FILE_FORMAT = USER01_FF_UNLOAD;
 
+DESC STAGE USER01_STAGE_UNLOAD;
+```
+![image](https://user-images.githubusercontent.com/52474199/217439551-d5166a16-be05-4d40-a55e-00e935c244ba.png)
+
+### 4. Unload files from table to Stage
+
+1. Internal Named Stage에 저장
+```sql
+COPY INTO @USER01_STAGE_UNLOAD 
+     FROM CUSTOMERS 
+     FILE_FORMAT = (FORMAT_NAME = USER01_FF_UNLOAD);
+     
+```
+2. 뭐가 들어있지? Table로부터 저장된 CSV
+```sql
+LIST @USER01_STAGE_UNLOAD;
+```
+![image](https://user-images.githubusercontent.com/52474199/217439732-be7b008e-ef78-4ddc-869f-189dbb324198.png)
+
+3. Stage 에 있는 파일을 바로 Table형태로 조회 가능
+```sql
+SELECT $1, $2, $3, $4, $5, $6
+  FROM @USER01_STAGE_UNLOAD 
+  (FILE_FORMAT => "USER01_FF_UNLOAD");
+```
+![image](https://user-images.githubusercontent.com/52474199/217440578-eb546b1c-6c69-45f7-9636-deaef97af303.png)
+
+### 5. Load File from Stage to Table
+
+1. Create a Table
+
+```sql
+CREATE OR REPLACE TABLE USER01_DB.USER01_SCHEMA.CUSTOMERS_2 (
+  id int,
+  first_name string,
+  last_name string,
+  email string,
+  gender string,
+  Job string);
+```
+2. Load File from Stage to Table
+
+```sql
+copy into CUSTOMERS_2
+     FROM @USER01_STAGE_UNLOAD 
+     FILE_FORMAT = (FORMAT_NAME = USER01_FF_UNLOAD);
+```
+![image](https://user-images.githubusercontent.com/52474199/217440827-a256ede1-072c-463d-8584-25f636a97a9e.png)
+
+3. 
+```
+SELECT * FROM CUSTOMERS_2;
+```
+![image](https://user-images.githubusercontent.com/52474199/217440972-bcaac0af-efbb-4ab3-b9f9-194306bfc262.png)
 
 ## 2. LAB. CACHE
 
