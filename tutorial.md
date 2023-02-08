@@ -463,7 +463,10 @@ SELECT c_customer_sk,
     AND c_customer_sk between 100000 and 600000
     ORDER BY ca_city, ca_state;    
 ```
+	
 </details>
+
+
 ## 4. LAB. FUNCTION
 
 ### 1. 대문자로 바꾸는 function 
