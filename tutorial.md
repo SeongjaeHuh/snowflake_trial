@@ -74,13 +74,52 @@ USE WAREHOUSE [username]_WH;
 
 ![image](https://user-images.githubusercontent.com/52474199/217410759-4f58ff74-fddb-4136-9ec0-1d9a8ac004e8.png)
 
+3. Schema 생성
+![image](https://user-images.githubusercontent.com/52474199/217410948-3ace4f0a-e5e1-440c-86b5-d70f4a104b27.png)
+![image](https://user-images.githubusercontent.com/52474199/217411024-26b0282b-0d6d-4043-a775-35c26c9fa91f.png)
+![image](https://user-images.githubusercontent.com/52474199/217411103-7c3f1a02-ad9a-4842-911b-62d4ced23d95.png)
 
 
-![image](https://user-images.githubusercontent.com/52474199/177910901-0cf15b01-c17e-41af-8da9-4589000e0b59.png)
+4. Table 생성
+![image](https://user-images.githubusercontent.com/52474199/217411393-90710ff5-e830-4028-8ee3-0c5306c6e9b5.png)
+![image](https://user-images.githubusercontent.com/52474199/217411457-c7f74104-9d5f-4785-83d4-fdcc1bb463ef.png)
 
-![image](https://user-images.githubusercontent.com/52474199/177910940-9c5b0a61-fcd0-413a-9730-9c3bc7a6bf08.png)
+> Execute DDL
+```sql
+create or replace TABLE USER01_DB.USER01_SCHEMA.USER01_TBL (
+	ID NUMBER(38,0),
+	NAME VARCHAR(10),
+	COUNTRY VARCHAR(20),
+	ORDER_DATE DATE
+);
+```
+![image](https://user-images.githubusercontent.com/52474199/217411686-ab5934fb-41ca-49fe-a7d7-0deef58021ba.png)
+![image](https://user-images.githubusercontent.com/52474199/217411723-8babe24a-007a-4d73-9bf9-e2414b9140ca.png)
 
-![image](https://user-images.githubusercontent.com/52474199/177910995-f796bc10-8e0d-41a3-a45c-cad313d1ba54.png)
+
+5. 권한주기
+
+```sql
+CREATE ROLE NEW_ROLE;
+grant usage on database USER01_DB to role NEW_ROLE;
+grant usage on all schemas in database USER01_DB to role NEW_ROLE;
+grant select on all tables in database USER01_DB to role NEW_ROLE;
+grant select on all views in database USER01_DB to role NEW_ROLE;
+
+grant usage on future schemas in database USER01_DB to role NEW_ROLE;
+grant select on future tables in database USER01_DB to role NEW_ROLE;
+grant select on future views in database USER01_DB to role NEW_ROLE;
+
+GRANT ROLE NEW_ROLE TO USER USER50;
+```
+![image](https://user-images.githubusercontent.com/52474199/217415805-4b62a9a1-e77f-424a-adea-277680d8b5c5.png)
+![image](https://user-images.githubusercontent.com/52474199/217412833-4e4a57dc-c55c-4edf-aa6e-eb00750fa9e7.png)
+
+6. 권한을 받은 USER가 Login 했을 때 조회됨
+
+![image](https://user-images.githubusercontent.com/52474199/217416107-cfc9a5e3-84e9-47e3-be9e-65df35f56103.png)
+
+
 
 -- UI통해서 만든 DB 삭제
 ```
