@@ -1,21 +1,23 @@
 # Snowflake Training
+
 ```
+-- git hub (this page)
+http://bit.ly/3lhZS2m
+
+-- USER 선택 (google spread sheet)
 https://bit.ly/3YhGH7i
-```
-
-## 01. Training
-
-
-```
---구글 스프레드 sheet
-https://bit.ly/3YePYNp
-
 user##/Abc123!@
-https://ldpolhd-ra71887.snowflakecomputing.com/
-bit.ly/3X4rKUB
+
+-- snowflake 접속
+https://bit.ly/3RH086V
 
 --load sample
 https://drive.google.com/file/d/1orzu44Gb6lorBxqVaTIeG6zBov3O-TLx/view?usp=sharing
+```
+
+
+![image](https://user-images.githubusercontent.com/52474199/215970816-12cbbbeb-42d3-486b-9a84-fdf0b5da2ed1.png)
+
 
 ```
 ### 계정생성
