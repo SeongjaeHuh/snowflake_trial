@@ -466,22 +466,15 @@ SELECT c_customer_sk,
 
 ## 4. LAB. FUNCTION
 
-```
-USE WAREHOUSE [username]_WH;
-CREATE DATABASE IF NOT EXISTS [username]_DB;
-USE [username]_DB.PUBLIC;
-ALTER SESSION SET USE_CACHED_RESULT = FALSE;
-```
-
--- 대문자로 바꾸는 function 
-```
+### 1. 대문자로 바꾸는 function 
+```sql
 SELECT c_name, UPPER(c_name) 
     FROM "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."CUSTOMER";
 ```
-![image](https://user-images.githubusercontent.com/52474199/177478660-73570f90-5a46-4874-aff4-e50653ead7a7.png)
+![image](https://user-images.githubusercontent.com/52474199/217485028-7b3cd627-f5c9-459e-9d0e-f4a19fa6a1e0.png)
 
--- IFF function 확인  
-```
+### 2. IFF function 확인  
+```sql
 SELECT  
     o_orderkey,
     o_totalprice,
@@ -489,10 +482,10 @@ SELECT
     IFF(o_orderpriority like '1-URGENT', o_totalprice * 0.01, o_totalprice * 0.005)::number(16,2)       ShippingCost  
 FROM "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."ORDERS";
 ```
-![image](https://user-images.githubusercontent.com/52474199/177478584-a1f9fed1-5321-4410-8811-b54f7da341f4.png)
+![image](https://user-images.githubusercontent.com/52474199/217484942-4b28a04d-26b9-4b77-b36a-d449eac0c72f.png)
 
--- CASE expression으로 Preffered Customer만 확인
-```
+### 3. CASE expression으로 Preffered Customer만 확인
+```sql
 SELECT (c_salutation || ' ' || c_first_name || ' ' || c_last_name) AS full_name,
     CASE
         WHEN c_preferred_cust_flag LIKE 'Y'
@@ -503,62 +496,65 @@ SELECT (c_salutation || ' ' || c_first_name || ' ' || c_last_name) AS full_name,
 FROM "SNOWFLAKE_SAMPLE_DATA"."TPCDS_SF100TCL"."CUSTOMER"
 LIMIT 100;
 ```
+![image](https://user-images.githubusercontent.com/52474199/217484895-d1ed8913-9143-498d-8faa-63116238ef0c.png)
 
-![image](https://user-images.githubusercontent.com/52474199/177478763-b0a77375-c6e6-4b43-86ff-e3ba18bb75c7.png)
+### 4. random() function으로 난수 생성
+1. 매번 다른 난수가 나오지만 같은 seed를 줄 경우 같은 결과 
 
-
--- random() function으로 난수 생성
--- 매번 다른 난수가 나오지만 같은 seed를 줄 경우 같은 결과 
-
-```
+```sql
 SELECT RANDOM() AS random_variable;
 ```
-![image](https://user-images.githubusercontent.com/52474199/177479532-ea955876-7244-4790-afa4-28c7ab8c80c4.png)
+![image](https://user-images.githubusercontent.com/52474199/217485396-4d4cea6a-d32f-43d5-9b0b-2a176361d041.png)
 
-```
+```sql
 SELECT RANDOM(100) AS random_fixed;
 ```
-![image](https://user-images.githubusercontent.com/52474199/177479572-c116f9fa-c9b7-4832-aec3-00fbf841a0c2.png)
+![image](https://user-images.githubusercontent.com/52474199/217485350-17109479-fb71-4fce-90f1-4ffb9137aaf8.png)
 
--- time, date 관련 함수
-```
+2. time, date 관련 함수
+
+```sql
 SELECT CURRENT_DATE(), DATE_PART('DAY', CURRENT_DATE()), CURRENT_TIME();
 ```
-![image](https://user-images.githubusercontent.com/52474199/177488289-f84436ab-ea7c-4763-9568-be2d81892c7e.png)
+![image](https://user-images.githubusercontent.com/52474199/217485466-ee8000a2-c5e2-4536-a6aa-55130e7d42fc.png)
 
--- 1시간 동안 쿼리 히스토리 조회
-```
-SELECT * FROM TABLE(information_schema.query_history
+3. 1시간 동안 쿼리 히스토리 조회
+
+```sql
+SELECT * FROM TABLE(snowflake.information_schema.query_history
       (DATEADD('hours', -1, CURRENT_TIMESTAMP()), CURRENT_TIMESTAMP()))
 ORDER BY start_time;
 ```
-![image](https://user-images.githubusercontent.com/52474199/177479698-848db49e-8445-4d1d-b73a-7fc5427149c6.png)
+![image](https://user-images.githubusercontent.com/52474199/217485832-ee246d47-0308-4880-91aa-f7afafe40a3a.png)
 
--- 11.3.2  마지막 결과 조회 function
-```
+4. 마지막 결과 조회 function
+
+```sql
 SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));
 ```
-![image](https://user-images.githubusercontent.com/52474199/177479742-69c1bcb8-11be-4e0d-8c3b-fa13c2d1da9d.png)
+![image](https://user-images.githubusercontent.com/52474199/217485993-074ca2e8-f6a4-4611-809b-1d5ea5f0e4b6.png)
 
 
--- system function (스노우플레이크를 사용하기 위한 허용 IP, port 정보)
-```
+ 5. system function (스노우플레이크를 사용하기 위한 허용 IP, port 정보)
+
+```sql
 SELECT SYSTEM$ALLOWLIST();
 ```
-![image](https://user-images.githubusercontent.com/52474199/177479809-7706989e-eef9-4c7e-b513-09312def3f24.png)
+![image](https://user-images.githubusercontent.com/52474199/217486053-878f757a-c15f-477a-ad84-0be6414bb0cb.png)
 
---  동일한 내용 읽기 쉽게 변환 
-```
+6.  동일한 내용 읽기 쉽게 변환
+ 
+```sql
 SELECT VALUE:type AS type,
        VALUE:host AS host,
        VALUE:port AS port
 FROM TABLE(FLATTEN(INPUT => PARSE_JSON(SYSTEM$ALLOWLIST())));
 ```
-![image](https://user-images.githubusercontent.com/52474199/177479874-ff08cdeb-c73f-47ba-9c56-d6f702c090db.png)
+![image](https://user-images.githubusercontent.com/52474199/217486198-f98cec30-1504-4332-b4f3-9580eb4b0f51.png)
 
 ### javascript UDF 예제
--- 영어권 길이 측정 단위 -> 미터로 변환
-```
+1. 영어권 길이 측정 단위 -> 미터로 변환
+```sql
 CREATE OR REPLACE FUNCTION Convert2Meters(lengthInput double, InputScale string )
     RETURNS double
     LANGUAGE javascript
@@ -582,17 +578,17 @@ CREATE OR REPLACE FUNCTION Convert2Meters(lengthInput double, InputScale string 
     }
   $$;
 ```
-![image](https://user-images.githubusercontent.com/52474199/177479984-d8b88ab5-f63f-4967-8b3a-f433909098df.png)
+![image](https://user-images.githubusercontent.com/52474199/217486735-85bfc174-6ab2-4e71-b12a-eed17dd386d9.png)
 
-```
+```sql
 SELECT Convert2Meters(10, 'yard');
 ```
-![image](https://user-images.githubusercontent.com/52474199/177480021-92ab1663-58aa-4a2f-9ad0-e0232904935d.png)
+![image](https://user-images.githubusercontent.com/52474199/217486784-6628efe4-5bd4-4ed3-b97c-ad17deef889d.png)
 
 
 ### SQL UDF 예제
--- 고객 별 주문 수 확인
-```
+1. 고객 별 주문 수 확인
+```sql
 CREATE OR REPLACE FUNCTION order_cnt(custkey number(38,0))
   RETURNS number(38,0)
   AS 
@@ -600,18 +596,16 @@ CREATE OR REPLACE FUNCTION order_cnt(custkey number(38,0))
     SELECT COUNT(1) FROM "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."ORDERS"WHERE o_custkey = custkey
   $$;
 ```  
-![image](https://user-images.githubusercontent.com/52474199/177298252-7fc53bc5-6a68-4939-b9ac-da193f110218.png)
-```  
+![image](https://user-images.githubusercontent.com/52474199/217486954-5eb5bd9b-9021-411c-8464-903777e70cf6.png)
+```sql
 SELECT C_name, C_address, order_cnt(C_custkey)
 FROM "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."CUSTOMER" LIMIT 10;
 ```
-
-![image](https://user-images.githubusercontent.com/52474199/177298146-a5d25c9d-94c7-46fe-894a-c45a02475bc2.png)
-
+![image](https://user-images.githubusercontent.com/52474199/217487053-22a93439-b3ae-4c6c-8e3d-d6309625a7a1.png)
 
 ### Stored Procedure 예제
 
--- warehouse size 변경 함수 
+1. warehouse size 변경 함수 
 ```
 create or replace procedure ChangeWHSize(wh_name STRING, wh_size STRING )
     returns string
@@ -658,15 +652,17 @@ create or replace procedure ChangeWHSize(wh_name STRING, wh_size STRING )
     $$
     ;
 ```
-![image](https://user-images.githubusercontent.com/52474199/177480272-406af3d2-54d3-4b2a-b61f-f24950c844a4.png)
+![image](https://user-images.githubusercontent.com/52474199/217487150-e2b00f38-c157-4266-84ee-c0e9fd8fc3f1.png)
 
--- 웨어 하우스 사이즈 넣어서 변경
+2. 웨어 하우스 사이즈 넣어서 변경
 ```
 CALL changewhsize ('[username]_wh', 'small');
 ````
-![image](https://user-images.githubusercontent.com/52474199/177480356-2f80c5ef-bcc2-47df-8f14-5b28ac3a306b.png)
+![image](https://user-images.githubusercontent.com/52474199/217487258-ea6e9f77-4397-44ca-8bd2-82af8892b8bb.png)
+![image](https://user-images.githubusercontent.com/52474199/217487335-72ac2240-ab53-4f5f-850a-8cf7caa8b0b3.png)
 
--- 오른쪽 위 context 정보에서 웨어하우스 사이즈 변경 되었는지 확인
+
+3. 오른쪽 위 context 정보에서 웨어하우스 사이즈 변경 되었는지 확인
 ![image](https://user-images.githubusercontent.com/52474199/177480467-d8be2544-8f41-476a-82c1-373b9adbeb55.png)
 →
 ![image](https://user-images.githubusercontent.com/52474199/177480385-249fbd09-253d-429b-9813-0e77547d192f.png)
@@ -676,8 +672,8 @@ ALTER WAREHOUSE [username]_WH SET WAREHOUSE_SIZE=XSmall;
 ALTER WAREHOUSE [username]_WH SUSPEND;
 ```
 
--- JAVASCRIPT STORED PROCEDURE
-```
+4. JAVASCRIPT STORED PROCEDURE
+```javascript
 CREATE OR REPLACE PROCEDURE STPROC1(FLOAT_PARAM1 FLOAT) 
 RETURNS STRING 
 LANGUAGE JAVASCRIPT STRICT 
@@ -693,21 +689,20 @@ AS
                          } 
    $$ ;
 ```
-![image](https://user-images.githubusercontent.com/52474199/177303428-e61ab3cb-cff7-4047-ac05-8ca207a4fc15.png)
-
-```
+![image](https://user-images.githubusercontent.com/52474199/217487541-6d42fa93-9314-4246-bc16-4de9db0780b0.png)
+```sql
 CREATE OR REPLACE TABLE STPROC_TEST_TABLE1 (NUM_COL1 FLOAT);
 ```
-![image](https://user-images.githubusercontent.com/52474199/177303554-0e670666-d700-469e-9e08-1f335538d824.png)
+![image](https://user-images.githubusercontent.com/52474199/217487720-fdab64cc-8631-4b1c-8ba4-6f992e194e3e.png)
 
-```
+```sql
 CALL STPROC1(3.14::FLOAT);
 ```
-![image](https://user-images.githubusercontent.com/52474199/177303626-51196c9c-ac3e-424e-a0d4-4f9a0826e0ee.png)
+![image](https://user-images.githubusercontent.com/52474199/217487807-3a9fb42b-e384-4cd2-bfc6-aba4730c382d.png)
 
 
 ```
 SELECT * FROM STPROC_TEST_TABLE1;
 ```
-![image](https://user-images.githubusercontent.com/52474199/177303758-77d4e61c-a9c0-4301-9e87-f95fa630c35e.png)
+![image](https://user-images.githubusercontent.com/52474199/217487910-e1fa3211-d71c-4e27-882d-1cdd34a7d92e.png)
 
