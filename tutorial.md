@@ -103,7 +103,7 @@ create or replace TABLE USER01_DB.USER01_SCHEMA.USER01_TBL (
 ![image](https://user-images.githubusercontent.com/52474199/217411723-8babe24a-007a-4d73-9bf9-e2414b9140ca.png)
 
 
-5. 권한주기
+5. (optional) 권한주기
 
 ```sql
 CREATE ROLE NEW_ROLE;
