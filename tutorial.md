@@ -255,7 +255,7 @@ COPY INTO @USER01_STAGE_UNLOAD
      FILE_FORMAT = (FORMAT_NAME = USER01_FF_UNLOAD);
      
 ```
-2. 뭐가 들어있지? Table로부터 저장된 CSV
+2. Table로부터 저장된 CSV
 ```sql
 LIST @USER01_STAGE_UNLOAD;
 ```
@@ -271,7 +271,7 @@ SELECT $1, $2, $3, $4, $5, $6
 
 ### 5. Load File from Stage to Table
 
-1. Create a Table
+1. Create a New Table
 
 ```sql
 CREATE OR REPLACE TABLE USER01_DB.USER01_SCHEMA.CUSTOMERS_2 (
@@ -291,7 +291,7 @@ copy into CUSTOMERS_2
 ```
 ![image](https://user-images.githubusercontent.com/52474199/217440827-a256ede1-072c-463d-8584-25f636a97a9e.png)
 
-3. 
+3. Select Data
 ```
 SELECT * FROM CUSTOMERS_2;
 ```
@@ -299,7 +299,7 @@ SELECT * FROM CUSTOMERS_2;
 
 ## 2. LAB. CACHE
 
--- WAREHOUSE 및 스키마 설정 
+### 1. WAREHOUSE 및 스키마 설정 
 
 ```
 USE ROLE SYSADMIN;
@@ -307,13 +307,14 @@ USE WAREHOUSE [username]_WH;
 USE SCHEMA SNOWFLAKE_SAMPLE_DATA.TPCH_SF100;
 ```
 
--- 1. Metdata cache 사용 확인
+### 1. Metdata cache 사용 확인
 
---아래 쿼리 실행
+1. Execute Qeuery
 ```
 SELECT MIN(l_orderkey), MAX(l_orderkey), COUNT(*) FROM lineitem;
 ```
-![image](https://user-images.githubusercontent.com/52474199/177480728-b91bd3ab-29fb-4380-b03f-64082534b856.png)
+![image](https://user-images.githubusercontent.com/52474199/217442147-b8aadd53-931d-4f78-9467-ef369cb2aeb0.png)
+
 
 -- 아래의 Result 나오는 Pane에서 Query ID 클릭 하여 Pofile 확인. 메타 데이터 cache 사용됨 확인
 
@@ -339,7 +340,8 @@ WHERE l_shipdate <= dateadd(day, 90, to_date('1998-12-01'))
 GROUP BY l_returnflag, l_linestatus
 ORDER BY l_returnflag, l_linestatus;
 ```
-![image](https://user-images.githubusercontent.com/52474199/177269953-2812941b-59e1-41c1-880a-ee15f63bc3f6.png)
+![image](https://user-images.githubusercontent.com/52474199/217442269-be514b04-9d56-4296-826e-b3e0d06f8af0.png)
+
 
 -- Query ID눌러서 Profile에서 "Percentage Scanned from" 확인
 
@@ -360,9 +362,19 @@ and l_extendedprice <= 20000
 GROUP BY l_returnflag, l_linestatus
 ORDER BY l_returnflag, l_linestatus;
 ```
+![image](https://user-images.githubusercontent.com/52474199/217442448-ac3b9396-8781-461a-a97c-92afba04f797.png)
+
 ![image](https://user-images.githubusercontent.com/52474199/177270492-bf7b17d8-45b3-45a9-8a54-0bec2da6f8bb.png)
 
 -- Query ID 눌러서 "Percentage Scanned from" 확인
+
+![image](https://user-images.githubusercontent.com/52474199/217442606-dc53b667-c839-4c61-b4f1-9a0d0b6c79c4.png)
+
+-- new
+![image](https://user-images.githubusercontent.com/52474199/217442724-a30b62f4-f6db-479b-b6e9-e257ff98c4ac.png)
+![image](https://user-images.githubusercontent.com/52474199/217442904-5fb14164-3fa0-409e-9f84-f7d94dc3469d.png)
+![image](https://user-images.githubusercontent.com/52474199/217443157-9512c21b-9514-4f8e-86b2-ea6c5ef366c0.png)
+
 
 
 -- warehouse 종료
@@ -381,7 +393,7 @@ USE SNOWFLAKE_SAMPLE_DATA.TPCDS_SF10TCL;
 ALTER SESSION SET USE_CACHED_RESULT=FALSE;
 ```
 
---   LIMIT있는 예제 쿼리 explain plan 실행:
+###  LIMIT있는 예제 쿼리 explain plan 실행:
 ```
 EXPLAIN
 SELECT c_customer_sk,
