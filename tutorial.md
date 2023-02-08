@@ -60,14 +60,20 @@ CREATE WAREHOUSE [username]_WH
 
 
 ## 2. LAB. 공통
-
+1. USE WAREHOUSE
 ```
 USE WAREHOUSE [username]_WH;
 ```
 ![image](https://user-images.githubusercontent.com/52474199/217408750-dd373abb-d10c-413f-b75d-c9e3cd931d56.png)
 
--- WEB UI 탐색
--- UI를 통해서 [username]_db database 생성해보기.
+
+
+2. UI를 통해서 [username]_db database 생성해보기.
+![image](https://user-images.githubusercontent.com/52474199/217410429-080446eb-0475-474b-a4b0-8d348effff26.png)
+![image](https://user-images.githubusercontent.com/52474199/217410601-22c85774-9d60-4de7-bb40-5f9e9d5bdee4.png)
+
+![image](https://user-images.githubusercontent.com/52474199/217410759-4f58ff74-fddb-4136-9ec0-1d9a8ac004e8.png)
+
 
 
 ![image](https://user-images.githubusercontent.com/52474199/177910901-0cf15b01-c17e-41af-8da9-4589000e0b59.png)
