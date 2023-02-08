@@ -528,7 +528,7 @@ SELECT * FROM TABLE(snowflake.information_schema.query_history
       (DATEADD('hours', -1, CURRENT_TIMESTAMP()), CURRENT_TIMESTAMP()))
 ORDER BY start_time;
 ```
-![image](https://user-images.githubusercontent.com/52474199/217485832-ee246d47-0308-4880-91aa-f7afafe40a3a.png)
+![image](https://user-images.githubusercontent.com/52474199/217506387-806c735d-fe85-41e4-9866-0646e09010ac.png)
 
 4. 마지막 결과 조회 function
 
