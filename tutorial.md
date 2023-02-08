@@ -65,16 +65,20 @@ USE WAREHOUSE [username]_WH;
 
 2. UI를 통해서 [username]_db database 생성
 > (Data > Database > (우측 상단) + Database)
+
 ![image](https://user-images.githubusercontent.com/52474199/217410429-080446eb-0475-474b-a4b0-8d348effff26.png)
 
 > Database 명 입력
+
 ![image](https://user-images.githubusercontent.com/52474199/217410601-22c85774-9d60-4de7-bb40-5f9e9d5bdee4.png)
 
 3. Schema 생성
 > (가운데) Search > Database 선택 >(우측 상단) + Schema
+
 ![image](https://user-images.githubusercontent.com/52474199/217410948-3ace4f0a-e5e1-440c-86b5-d70f4a104b27.png)
 
 > Schema 이름 입력
+
 ![image](https://user-images.githubusercontent.com/52474199/217411024-26b0282b-0d6d-4043-a775-35c26c9fa91f.png)
 
 4. Table 생성
@@ -83,6 +87,7 @@ USE WAREHOUSE [username]_WH;
 ![image](https://user-images.githubusercontent.com/52474199/217411393-90710ff5-e830-4028-8ee3-0c5306c6e9b5.png)
 
 > DDL 입력
+
 ![image](https://user-images.githubusercontent.com/52474199/217411457-c7f74104-9d5f-4785-83d4-fdcc1bb463ef.png)
 
 > Execute DDL
