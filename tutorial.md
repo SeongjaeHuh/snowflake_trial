@@ -234,6 +234,8 @@ VALUES
 ![image](https://user-images.githubusercontent.com/52474199/217439044-6f6c4f3c-8bd8-4020-8a3e-1b0b6abdea27.png)
 
 ### 2. Create a File Format
+> describes a set of staged data to access or load into Snowflake tables.
+
 ```sql
 CREATE OR REPLACE FILE FORMAT USER01_DB.USER01_SCHEMA.USER01_FF_UNLOAD
 TYPE = CSV COMPRESSION = NONE FIELD_DELIMITER = ',' FILE_EXTENSION = 'CSV'  SKIP_HEADER = 0;
@@ -244,7 +246,9 @@ DESC FILE FORMAT USER01_FF_UNLOAD;
 
 
 ### 3. Create a Stage
+> Snowflake Stages are locations where data files are stored (“staged”) which helps in loading data into and unloading data out of database tables. The stage locations could be internal or external to Snowflake environment.
 
+[More About Stage](https://thinketl.com/types-of-snowflake-stages-data-loading-and-unloading-features/)
 ```sql
 CREATE OR REPLACE STAGE USER01_STAGE_UNLOAD
 FILE_FORMAT = USER01_FF_UNLOAD;
