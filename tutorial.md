@@ -31,9 +31,7 @@ grant role sysadmin to user user100;
 -- 웨어하우스 명령어로 생성 
 -- ***에 user 이름 변경
 
-### 1. Create WAREHOUSE
-
-1. Create warehouse 명령어로 생성 
+### 1. Create WAREHOUSE 
 > e.g.) login ID: user98 일 때,  [username]_WH -> user98_WH 
 
 ```sql
@@ -54,12 +52,9 @@ CREATE WAREHOUSE [username]_WH
 2. Snowsight UI에서 생성
 
 ![image](https://user-images.githubusercontent.com/52474199/217409146-fc0c253b-bcf0-481b-862f-d010f87aa811.png)
-![image](https://user-images.githubusercontent.com/52474199/217409306-bbed788c-c6a8-4cee-9bae-8b6b252005d5.png)
-![image](https://user-images.githubusercontent.com/52474199/217409423-8c97aaff-655a-4f13-8be0-389697f470ca.png)
 
 
-
-## 2. LAB. 공통
+## 2. LAB. 공통 실습
 1. USE WAREHOUSE
 ```
 USE WAREHOUSE [username]_WH;
@@ -68,20 +63,26 @@ USE WAREHOUSE [username]_WH;
 
 
 
-2. UI를 통해서 [username]_db database 생성해보기.
+2. UI를 통해서 [username]_db database 생성
+> (Data > Database > (우측 상단) + Database)
 ![image](https://user-images.githubusercontent.com/52474199/217410429-080446eb-0475-474b-a4b0-8d348effff26.png)
+
+> Database 명 입력
 ![image](https://user-images.githubusercontent.com/52474199/217410601-22c85774-9d60-4de7-bb40-5f9e9d5bdee4.png)
 
-![image](https://user-images.githubusercontent.com/52474199/217410759-4f58ff74-fddb-4136-9ec0-1d9a8ac004e8.png)
-
 3. Schema 생성
+> (가운데) Search > Database 선택 >(우측 상단) + Schema
 ![image](https://user-images.githubusercontent.com/52474199/217410948-3ace4f0a-e5e1-440c-86b5-d70f4a104b27.png)
-![image](https://user-images.githubusercontent.com/52474199/217411024-26b0282b-0d6d-4043-a775-35c26c9fa91f.png)
-![image](https://user-images.githubusercontent.com/52474199/217411103-7c3f1a02-ad9a-4842-911b-62d4ced23d95.png)
 
+> Schema 이름 입력
+![image](https://user-images.githubusercontent.com/52474199/217411024-26b0282b-0d6d-4043-a775-35c26c9fa91f.png)
 
 4. Table 생성
+> (가운데) Search > Database 선택 > Schema 선택 > (우측 상단) + Create > Table > Standard
+
 ![image](https://user-images.githubusercontent.com/52474199/217411393-90710ff5-e830-4028-8ee3-0c5306c6e9b5.png)
+
+> DDL 입력
 ![image](https://user-images.githubusercontent.com/52474199/217411457-c7f74104-9d5f-4785-83d4-fdcc1bb463ef.png)
 
 > Execute DDL
