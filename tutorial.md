@@ -27,15 +27,14 @@ grant role sysadmin to user user100;
 ```
 
 
-## 환경구성
+## 1. 환경구성
 -- 웨어하우스 명령어로 생성 
 -- ***에 user 이름 변경
 
+### 1. Create WAREHOUSE
 
-### Create WAREHOUSE
-
-Create warehouse 명령어로 생성 
-e.g.) login ID: user98 일 때,  [username]_WH -> user98_WH 
+1. Create warehouse 명령어로 생성 
+> e.g.) login ID: user98 일 때,  [username]_WH -> user98_WH 
 
 ```sql
 USE ROLE SYSADMIN;
@@ -50,10 +49,17 @@ CREATE WAREHOUSE [username]_WH
   SCALING_POLICY = 'STANDARD'
  ;
 ```
-
 ![image](https://user-images.githubusercontent.com/52474199/217408674-5cef7e16-ae43-46e8-8512-c5854595c3de.png)
 
-## 0. LAB. 공통
+2. Snowsight UI에서 생성
+
+![image](https://user-images.githubusercontent.com/52474199/217409146-fc0c253b-bcf0-481b-862f-d010f87aa811.png)
+![image](https://user-images.githubusercontent.com/52474199/217409306-bbed788c-c6a8-4cee-9bae-8b6b252005d5.png)
+![image](https://user-images.githubusercontent.com/52474199/217409423-8c97aaff-655a-4f13-8be0-389697f470ca.png)
+
+
+
+## 2. LAB. 공통
 
 ```
 USE WAREHOUSE [username]_WH;
@@ -62,11 +68,6 @@ USE WAREHOUSE [username]_WH;
 
 -- WEB UI 탐색
 -- UI를 통해서 [username]_db database 생성해보기.
-![image](https://user-images.githubusercontent.com/52474199/217409146-fc0c253b-bcf0-481b-862f-d010f87aa811.png)
-
-![image](https://user-images.githubusercontent.com/52474199/217409306-bbed788c-c6a8-4cee-9bae-8b6b252005d5.png)
-![image](https://user-images.githubusercontent.com/52474199/217409423-8c97aaff-655a-4f13-8be0-389697f470ca.png)
-
 
 
 ![image](https://user-images.githubusercontent.com/52474199/177910901-0cf15b01-c17e-41af-8da9-4589000e0b59.png)
