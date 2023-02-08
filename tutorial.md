@@ -197,7 +197,7 @@ ALTER WAREHOUSE [username]_WH SUSPEND; /*RESUME (시작)*/
 </details>
 
 
-## 1. LAB. LOADING
+## 1. LAB. LOADING (import Data into Table) & UNLOADING (export Data into Storage)
 
 ### 1. Create a Table
 
