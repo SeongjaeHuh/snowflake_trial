@@ -122,7 +122,7 @@ GRANT ROLE NEW_ROLE TO USER USER50;
 
 
 -- UI통해서 만든 DB 삭제
-```
+```sql
 USE WAREHOUSE [username]_WH;
 USE DATABASE [username]_DB;
 USE SCHEMA PUBLIC;
@@ -132,13 +132,13 @@ DROP DATABASE [username]_DB;
 
 -- 명령어 통해서 DB 생성
 
-```
+```sql
 DROP WAREHOUSE [username]_WH;
 CREATE DATABASE [username]_DB;
 ```
 
 -- 테이블 생성 해보기 :
-```
+```sql
 CREATE OR REPLACE TABLE [username]_DB.PUBLIC.[username]_TBL
     (id NUMBER(38,0), name STRING(10),
     country VARCHAR(20), order_date DATE);
@@ -162,7 +162,7 @@ CREATE OR REPLACE TABLE [username]_DB.PUBLIC.[username]_TBL
 
 
 -- 아래 쿼리 실행 해보기
-```
+```sql
 SHOW TABLES;
 
 SELECT COUNT(*) FROM orders;
@@ -183,7 +183,7 @@ ORDER BY o_orderpriority;
 ```
 
 -- 웨어하우스 중지(시작)
-```
+```sql
 ALTER WAREHOUSE [username]_WH SUSPEND; /*RESUME (시작)*/
 ```
 
@@ -227,7 +227,7 @@ VALUES
 ![image](https://user-images.githubusercontent.com/52474199/217439044-6f6c4f3c-8bd8-4020-8a3e-1b0b6abdea27.png)
 
 ### 2. Create a File Format
-```
+```sql
 CREATE OR REPLACE FILE FORMAT USER01_DB.USER01_SCHEMA.USER01_FF_UNLOAD
 TYPE = CSV COMPRESSION = NONE FIELD_DELIMITER = ',' FILE_EXTENSION = 'CSV'  SKIP_HEADER = 0;
 
@@ -292,7 +292,7 @@ copy into CUSTOMERS_2
 ![image](https://user-images.githubusercontent.com/52474199/217440827-a256ede1-072c-463d-8584-25f636a97a9e.png)
 
 3. Select Data
-```
+```sql
 SELECT * FROM CUSTOMERS_2;
 ```
 ![image](https://user-images.githubusercontent.com/52474199/217440972-bcaac0af-efbb-4ab3-b9f9-194306bfc262.png)
@@ -301,7 +301,7 @@ SELECT * FROM CUSTOMERS_2;
 
 ### 1. WAREHOUSE 및 스키마 설정 
 
-```
+```sql
 USE ROLE SYSADMIN;
 USE WAREHOUSE [username]_WH;
 USE SCHEMA SNOWFLAKE_SAMPLE_DATA.TPCH_SF100;
@@ -310,22 +310,22 @@ USE SCHEMA SNOWFLAKE_SAMPLE_DATA.TPCH_SF100;
 ### 1. Metdata cache 사용 확인
 
 1. Execute Qeuery
-```
+```sql
 SELECT MIN(l_orderkey), MAX(l_orderkey), COUNT(*) FROM lineitem;
 ```
-![image](https://user-images.githubusercontent.com/52474199/217442147-b8aadd53-931d-4f78-9467-ef369cb2aeb0.png)
+![image](https://user-images.githubusercontent.com/52474199/217444454-9e09131c-5068-4a53-bb4c-8b6e1c0612c6.png)
+
+2. 아래의 Result 옆 Query ID 클릭 하여 Pofile 확인. 메타 데이터 cache 사용됨 확인
+
+![image](https://user-images.githubusercontent.com/52474199/217444273-e8cbc060-3e3b-4991-b3a9-c99f23daf5b5.png)
 
 
--- 아래의 Result 나오는 Pane에서 Query ID 클릭 하여 Pofile 확인. 메타 데이터 cache 사용됨 확인
-
--- result cache 실습용. Cache_result 사용하지 않도록
-```
+3. Result cache 실습용. Cache_result 사용하지 않도록
+```sql
 ALTER SESSION SET USE_CACHED_RESULT = FALSE;
 ```
 
--- warehouse 자동 resume 되므로 아래 실행
-
-```
+```sql
 SELECT l_returnflag, l_linestatus,
     SUM(l_quantity) AS sum_qty,
     SUM(l_extendedprice) AS sum_base_price,
@@ -346,7 +346,7 @@ ORDER BY l_returnflag, l_linestatus;
 -- Query ID눌러서 Profile에서 "Percentage Scanned from" 확인
 
 -- WHERE만 조금 바뀐 바뀐 유사한 쿼리 실행.
-```
+```sql
 SELECT l_returnflag, l_linestatus,
     SUM(l_quantity) AS sum_qty,
     SUM(l_extendedprice) AS sum_base_price,
@@ -362,17 +362,13 @@ and l_extendedprice <= 20000
 GROUP BY l_returnflag, l_linestatus
 ORDER BY l_returnflag, l_linestatus;
 ```
-![image](https://user-images.githubusercontent.com/52474199/217442448-ac3b9396-8781-461a-a97c-92afba04f797.png)
-
-![image](https://user-images.githubusercontent.com/52474199/177270492-bf7b17d8-45b3-45a9-8a54-0bec2da6f8bb.png)
 
 -- Query ID 눌러서 "Percentage Scanned from" 확인
 
 ![image](https://user-images.githubusercontent.com/52474199/217442606-dc53b667-c839-4c61-b4f1-9a0d0b6c79c4.png)
 
--- new
-![image](https://user-images.githubusercontent.com/52474199/217442724-a30b62f4-f6db-479b-b6e9-e257ff98c4ac.png)
-![image](https://user-images.githubusercontent.com/52474199/217442904-5fb14164-3fa0-409e-9f84-f7d94dc3469d.png)
+
+![image](https://user-images.githubusercontent.com/52474199/217443497-aa07fa24-1b04-488d-8534-8328b838ece9.png)
 ![image](https://user-images.githubusercontent.com/52474199/217443157-9512c21b-9514-4f8e-86b2-ea6c5ef366c0.png)
 
 
