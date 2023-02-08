@@ -102,7 +102,7 @@ create or replace TABLE USER01_DB.USER01_SCHEMA.USER01_TBL (
 ![image](https://user-images.githubusercontent.com/52474199/217411686-ab5934fb-41ca-49fe-a7d7-0deef58021ba.png)
 ![image](https://user-images.githubusercontent.com/52474199/217411723-8babe24a-007a-4d73-9bf9-e2414b9140ca.png)
 
-
+<details>
 5. (optional) 권한주기
 
 ```sql
@@ -150,8 +150,7 @@ CREATE OR REPLACE TABLE [username]_DB.PUBLIC.[username]_TBL
     country VARCHAR(20), order_date DATE);
 ```
 
------------------- 테이블 UI 탐색 ----------------
--- (PDF UI 부분 참조)
+### Table UI 탐색
 
 -- 왼쪽 Pane에서 SNOWFLAKE_SAMPLE_DATA DB에서 TPCH_SF1 스키마 찾아보기 
 
@@ -194,6 +193,8 @@ ALTER WAREHOUSE [username]_WH SUSPEND; /*RESUME (시작)*/
 ```
 
 
+
+</details>
 
 
 ## 1. LAB. LOADING
