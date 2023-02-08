@@ -331,7 +331,7 @@ SELECT MIN(l_orderkey), MAX(l_orderkey), COUNT(*) FROM lineitem;
 ALTER SESSION SET USE_CACHED_RESULT = FALSE;
 ```
 
-4. Execute a New Qeuery
+4. Execute a New Query
 ```sql
 SELECT l_returnflag, l_linestatus,
     SUM(l_quantity) AS sum_qty,
@@ -350,7 +350,9 @@ ORDER BY l_returnflag, l_linestatus;
 ![image](https://user-images.githubusercontent.com/52474199/217442269-be514b04-9d56-4296-826e-b3e0d06f8af0.png)
 
 
--- Query ID눌러서 Profile에서 "Percentage Scanned from" 확인
+#### Query ID눌러서 Profile에서 "Percentage Scanned from" 확인
+![image](https://user-images.githubusercontent.com/52474199/217473172-c3c4a5a5-eb43-4796-9b92-ea29bdc99a5b.png)
+
 
 5. Execute a similar Qeuery (it changed only <b> WHERE </b> clause..)
 ```sql
