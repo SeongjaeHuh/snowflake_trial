@@ -320,11 +320,12 @@ SELECT MIN(l_orderkey), MAX(l_orderkey), COUNT(*) FROM lineitem;
 ![image](https://user-images.githubusercontent.com/52474199/217444273-e8cbc060-3e3b-4991-b3a9-c99f23daf5b5.png)
 
 
-3. Result cache 실습용. Cache_result 사용하지 않도록
+3. Result cache 실습용. Cache_result 사용하지 않도록 설정
 ```sql
 ALTER SESSION SET USE_CACHED_RESULT = FALSE;
 ```
 
+4. Execute a New Qeuery
 ```sql
 SELECT l_returnflag, l_linestatus,
     SUM(l_quantity) AS sum_qty,
@@ -345,7 +346,7 @@ ORDER BY l_returnflag, l_linestatus;
 
 -- Query ID눌러서 Profile에서 "Percentage Scanned from" 확인
 
--- WHERE만 조금 바뀐 바뀐 유사한 쿼리 실행.
+5. Execute a similar Qeuery (it changed only <b> WHERE </b> clause..)
 ```sql
 SELECT l_returnflag, l_linestatus,
     SUM(l_quantity) AS sum_qty,
@@ -363,7 +364,7 @@ GROUP BY l_returnflag, l_linestatus
 ORDER BY l_returnflag, l_linestatus;
 ```
 
--- Query ID 눌러서 "Percentage Scanned from" 확인
+6. Query ID 눌러서 "Percentage Scanned from" 확인
 
 ![image](https://user-images.githubusercontent.com/52474199/217442606-dc53b667-c839-4c61-b4f1-9a0d0b6c79c4.png)
 
@@ -373,7 +374,7 @@ ORDER BY l_returnflag, l_linestatus;
 
 
 
--- warehouse 종료
+7. warehouse 종료
 ```
 ALTER WAREHOUSE [username]_WH SUSPEND;
 ```
