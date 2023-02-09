@@ -2,7 +2,7 @@
 
 ```
 -- git hub (this page)
-http://bit.ly/3lhZS2m
+https://bit.ly/3HPW93H
 
 -- USER 선택 (google spread sheet)
 https://bit.ly/3Xhaf3F
