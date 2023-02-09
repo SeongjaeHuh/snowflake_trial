@@ -9,8 +9,8 @@ https://bit.ly/3Xhaf3F
 user##/Abc123!@
 
 -- snowflake 접속(아래 둘 다 같은 주소)
-https://bit.ly/3JUtKMs
-https://ldpolhd-ra71887.snowflakecomputing.com/console/login#/
+http://bit.ly/3HPW93H
+https://ldpolhd-ra71887.snowflakecomputing.com/
 
 --load sample
 https://drive.google.com/file/d/1orzu44Gb6lorBxqVaTIeG6zBov3O-TLx/view?usp=sharing
