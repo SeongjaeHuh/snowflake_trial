@@ -4,14 +4,14 @@
 -- git hub (this page)
 http://bit.ly/3RYVdP1
 
--- USER 선택 (google spread sheet)
+-- Snowflake 실습용 User 선택
 https://bit.ly/3YIP0IY
 user##/Abc123!@
 
--- snowflake 접속(아래 둘 다 같은 주소)
+-- snowflake 실습용 계정
 https://notzlle-gs39826.snowflakecomputing.com
 
---load sample
+--load sample data
 https://drive.google.com/file/d/1orzu44Gb6lorBxqVaTIeG6zBov3O-TLx/view?usp=sharing
 ```
 
