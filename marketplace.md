@@ -2,7 +2,7 @@
 > The Snowflake Marketplace enables data consumers to access and query available data sets and services to drive informed data-driven decisions. 
 > Data providers can publish data sets or make data analytics services available to Snowflake customers.
 
-## How to List Your Product in Marketplace? [참고링크](https://www.youtube.com/watch?v=_VT4FB0xr0Q)
+## How to List Your Product in Marketplace? [(참고링크)](https://www.youtube.com/watch?v=_VT4FB0xr0Q)
 ```
 https://www.youtube.com/watch?v=_VT4FB0xr0Q
 ```
