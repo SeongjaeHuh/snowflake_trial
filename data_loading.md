@@ -1,10 +1,11 @@
-# Citi_Bike Data Loading Test
-> "CITIBIKE"."PUBLIC"."TRIPS"
-> snowflake, TRIPS, 61,468,359 rows1.2 GB
-> 우리가 사용할 데이터는 Citi Bike NYC에서 제공하는 자전거 공유 데이터입니다. 
-> 데이터는 미국 동부 리전의 Amazon AWS S3 버킷에서 내보내지고 사전 준비되었습니다. 
-> 데이터는 여행 시간, 위치, 사용자 유형, 성별, 나이 등에 대한 정보로 구성됩
-> AWS S3에서 데이터는 61.5M 행, 377개의 객체 및 1.9GB의 압축을 나타냅니다.
+# Data Loading Test
+
+1. "CITIBIKE"."PUBLIC"."TRIPS"
+2. snowflake, TRIPS, 61,468,359 rows1.2 GB
+3. 우리가 사용할 데이터는 Citi Bike NYC에서 제공하는 자전거 공유 데이터입니다. 
+4. 데이터는 미국 동부 리전의 Amazon AWS S3 버킷에서 내보내지고 사전 준비되었습니다. 
+5. 데이터는 여행 시간, 위치, 사용자 유형, 성별, 나이 등에 대한 정보로 구성됩니다.
+6. AWS S3에서 데이터는 61.5M 행, 377개의 객체 및 1.9GB의 압축을 나타냅니다.
 
 
 ## 1. sysadmin 역할 할당
