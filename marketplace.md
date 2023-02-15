@@ -23,7 +23,9 @@
 <img width="1066" alt="스크린샷 2023-02-15 오후 2 07 11" src="https://user-images.githubusercontent.com/52474199/218937303-cfccce1e-a403-4eff-b4eb-10c753525044.png">
 
 
-### demo
+### Demo [link](https://www.snowflake.com/guides/what-data-marketplace?wvideo=w8cjuha29w)
 ```
 https://www.snowflake.com/guides/what-data-marketplace?wvideo=w8cjuha29w
 ```
+
+
