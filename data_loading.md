@@ -7,12 +7,12 @@
 > AWS S3에서 데이터는 61.5M 행, 377개의 객체 및 1.9GB의 압축을 나타냅니다.
 
 
-1. sysadmin 역할 할당
+## 1. sysadmin 역할 할당
 ```sql
 use role sysadmin;
 ```
 
-2. warehouse 생성
+## 2. Warehouse 생성
 ```sql
 CREATE OR REPLACE WAREHOUSE DEMO_HE 
 WAREHOUSE_SIZE = 'XSMALL'
@@ -23,7 +23,7 @@ MAX_CLUSTER_COUNT = 1
 ;
 ```
 
-3. 데이터베이스 생성
+## 3. Database 생성
 ```sql
 CREATE DATABASE CITIBIKE;
 
@@ -31,7 +31,7 @@ use database CITIBIKE;
 use schema PUBLIC;
 ```
 
-4. 테이블 생성
+## 4. Table 생성
 ```sql
 create or replace table trips
 (tripduration integer,
@@ -51,7 +51,7 @@ usertype string,
 birth_year integer,
 gender integer);
 ```
-5. 외부 stage 생성
+## 5. 외부 stage 생성
 
 ```sql
 create stage citibike_trips
@@ -61,7 +61,7 @@ create stage citibike_trips
 ```
 list @citibike_trips;
 ```
-6. fileformat 생성
+## 6. fileformat 생성
 ```sql
 create or replace file format csv type='csv'
   compression = 'auto' field_delimiter = ',' record_delimiter = '\n'
@@ -76,7 +76,7 @@ show file formats in database citibike;
 ```
 
 
-7. 데이터 로딩
+## 7. 데이터 로딩
 ```sql
 copy into trips 
 from @citibike_trips 
