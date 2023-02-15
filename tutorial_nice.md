@@ -1,21 +1,32 @@
 # Snowflake Training
 
+## 참고 페이지
+### 1. git hub (this page)
 ```
--- git hub (this page)
 http://bit.ly/3RYVdP1
+```
+### 2. git hub (data loading)
+```
+http://bit.ly/3lrQARe
+```
 
--- Snowflake 실습용 User 선택
+### 3. Snowflake 실습용 User 선택 []()
+```
 https://bit.ly/3YIP0IY
 user##/Abc123!@
-
--- snowflake 실습용 계정
+```
+### 4. snowflake 실습용 계정
+```
 https://notzlle-gs39826.snowflakecomputing.com
+```
 
---load sample data
--- 1. veggies_root_depth_comma_opt_enclosed.txt
+### 5. load sample data
+1. veggies_root_depth_comma_opt_enclosed.txt
+```
 https://drive.google.com/file/d/1orzu44Gb6lorBxqVaTIeG6zBov3O-TLx/view?usp=sharing
-
--- 2. load_employee.csv
+```
+2. load_employee.csv
+```
 https://bit.ly/3k2iGCj
 ```
 
