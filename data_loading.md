@@ -110,7 +110,27 @@ https://bit.ly/3k2iGCj
 
 ![image](https://user-images.githubusercontent.com/52474199/218958926-ae6c9f93-b17a-4385-ba4e-29f705a6ac78.png)
 
-
+<details>
+### (참고) cli 명령어 보기
+#### 1. 테이블 생성
+```sql
+CREATE TABLE "TEST_DB"."PUBLIC"."EMPLOYEE_1" ("NAME" STRING, "AGE" INTEGER, "EMAIL" STRING, "JOB" STRING);
+```
+    
+#### 2. Fileformat 생성
+```sql
+CREATE FILE FORMAT "TEST_DB"."PUBLIC".CSV 
+            TYPE = 'CSV' COMPRESSION = 'AUTO' FIELD_DELIMITER = ',' RECORD_DELIMITER = '\n' SKIP_HEADER = 1 
+            FIELD_OPTIONALLY_ENCLOSED_BY = 'NONE' TRIM_SPACE = FALSE ERROR_ON_COLUMN_COUNT_MISMATCH = TRUE 
+            ESCAPE = 'NONE' ESCAPE_UNENCLOSED_FIELD = '\134' DATE_FORMAT = 'AUTO' TIMESTAMP_FORMAT = 'AUTO' NULL_IF = ('\\N');
+```
+    
+#### 3. Copy into 명령어 수행
+```sql
+PUT file://<file_path>/load_employee.csv @EMPLOYEE_1/ui1676447718293
+COPY INTO "TEST_DB"."PUBLIC"."EMPLOYEE_1" FROM @/ui1676447718293 FILE_FORMAT = '"TEST_DB"."PUBLIC"."CSV_FF"' ON_ERROR = 'ABORT_STATEMENT' PURGE = TRUE;
+```
+</details>
 
 # Data Loading Test 3
 
