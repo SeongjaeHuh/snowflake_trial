@@ -111,8 +111,11 @@ https://bit.ly/3k2iGCj
 ![image](https://user-images.githubusercontent.com/52474199/218958926-ae6c9f93-b17a-4385-ba4e-29f705a6ac78.png)
 
 <details>
+    
 ### (참고) cli 명령어 보기
+    
 #### 1. 테이블 생성
+    
 ```sql
 CREATE TABLE "TEST_DB"."PUBLIC"."EMPLOYEE_1" ("NAME" STRING, "AGE" INTEGER, "EMAIL" STRING, "JOB" STRING);
 ```
