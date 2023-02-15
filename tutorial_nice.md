@@ -12,7 +12,11 @@ user##/Abc123!@
 https://notzlle-gs39826.snowflakecomputing.com
 
 --load sample data
+-- 1. veggies_root_depth_comma_opt_enclosed.txt
 https://drive.google.com/file/d/1orzu44Gb6lorBxqVaTIeG6zBov3O-TLx/view?usp=sharing
+
+-- 2. load_employee.csv
+https://bit.ly/3k2iGCj
 ```
 
 
