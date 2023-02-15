@@ -2,10 +2,10 @@
 > The Snowflake Marketplace enables data consumers to access and query available data sets and services to drive informed data-driven decisions. 
 > Data providers can publish data sets or make data analytics services available to Snowflake customers.
 
-## 
-> 1. The Snowflake Data Marketplace offers two types of data listings, Standard Data Listings and Personalized Data Listings. 
-> 2. Once published, both types of listings are displayed to consumers in the selected regions. 
-> The key difference between standard and personalized listings is the ability to access the data share
+## How to List Your Product in Marketplace? [참고링크](https://www.youtube.com/watch?v=_VT4FB0xr0Q)
+```
+https://www.youtube.com/watch?v=_VT4FB0xr0Q
+```
 
 
 ## Is Snowflake data marketplace free?
