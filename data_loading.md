@@ -109,3 +109,52 @@ https://bit.ly/3k2iGCj
 ![image](https://user-images.githubusercontent.com/52474199/218958874-4f138833-bbd4-40a3-853a-6d483790ccc0.png)
 
 ![image](https://user-images.githubusercontent.com/52474199/218958926-ae6c9f93-b17a-4385-ba4e-29f705a6ac78.png)
+
+
+
+# Data Loading Test 3
+
+
+## 1. table 생성
+```
+use warehouse [username]_wh; -- 생성한 웨어하우스 입력
+
+CREATE DATABASE [username]_VEGE_DB;
+use schema "[username]"."PUBLIC";
+
+create table vegetable_details
+(
+plant_name varchar(25)
+, root_depth_code varchar(1)
+);
+
+```
+## 2. Load 할 file 선택 (https://bit.ly/3RHDM5w)
+> [로컬 다운로드](https://bit.ly/3RHDM5w)
+
+
+## 3. file format 생성
+```
+CREATE FILE FORMAT [DB명].[SCHEMA_명].[FILE_FORMAT명] 
+       COMPRESSION = 'AUTO' FIELD_DELIMITER = ',' RECORD_DELIMITER = '\n' 
+       SKIP_HEADER = 1 FIELD_OPTIONALLY_ENCLOSED_BY = '\042' TRIM_SPACE = FALSE 
+       ERROR_ON_COLUMN_COUNT_MISMATCH = TRUE 
+       ESCAPE = 'NONE' ESCAPE_UNENCLOSED_FIELD = '\134' DATE_FORMAT = 'AUTO' TIMESTAMP_FORMAT = 'AUTO' NULL_IF = ('\\N');
+```
+
+--제공된 txt파일을 data load wizard를 통해 로딩(pdf 자료 참고)
+
+![image](https://user-images.githubusercontent.com/52474199/177914492-5daca478-5789-4f9c-8e69-8b8ec285ca63.png)
+
+![image](https://user-images.githubusercontent.com/52474199/177914538-cc2a1a58-9d49-4305-985a-1076470f4adc.png)
+
+![image](https://user-images.githubusercontent.com/52474199/177914554-736b0569-1c28-44d0-b223-788eba423427.png)
+
+![image](https://user-images.githubusercontent.com/52474199/177914597-213f9646-56a0-47e2-ba4d-31f8a334d49e.png)
+
+
+
+![image](https://user-images.githubusercontent.com/52474199/177914907-fd64dac4-e92d-4c02-a565-7b2571c81a8d.png)
+
+![image](https://user-images.githubusercontent.com/52474199/217207935-a7a385d0-ef43-45bd-ad3c-26fb1754e272.png)
+
