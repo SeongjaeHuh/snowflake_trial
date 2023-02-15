@@ -99,14 +99,12 @@ https://bit.ly/3k2iGCj
 ```
 ![image](https://user-images.githubusercontent.com/52474199/218957945-8d6285a0-c058-4c1c-82cb-582cf3b50053.png)
 
-![image](https://user-images.githubusercontent.com/52474199/218958011-0c759ce7-7f19-4a03-887b-f267b4ee67e4.png)
+![image](https://user-images.githubusercontent.com/52474199/218958512-a34b93cb-afe8-4082-a943-83360e71c1c7.png)
 
 
+![image](https://user-images.githubusercontent.com/52474199/218958569-3ce597c9-0d6d-4cf8-b5b7-de7f804d58ec.png)
 
-![image](https://user-images.githubusercontent.com/52474199/218958067-1bc3614a-f215-4238-815c-725738ba8eb6.png)
+![image](https://user-images.githubusercontent.com/52474199/218958639-4f1b33a1-8607-4c38-84d9-1e9896a4ed85.png)
 
-![image](https://user-images.githubusercontent.com/52474199/218958118-a25f68a7-cabb-41ee-a43e-9f83af5200ba.png)
+![image](https://user-images.githubusercontent.com/52474199/218958672-676d4ef2-c17a-4212-816d-60575deef140.png)
 
-![image](https://user-images.githubusercontent.com/52474199/218958159-2ba50fca-c97d-4a61-951c-87b7410e0711.png)
-
-![image](https://user-images.githubusercontent.com/52474199/218958197-4df69f5a-d64f-48d8-9e06-d5b519beb245.png)
