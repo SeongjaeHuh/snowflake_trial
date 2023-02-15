@@ -164,6 +164,7 @@ CREATE FILE FORMAT [DB명].[SCHEMA_명].[FILE_FORMAT명]
        ERROR_ON_COLUMN_COUNT_MISMATCH = TRUE 
        ESCAPE = 'NONE' ESCAPE_UNENCLOSED_FIELD = '\134' DATE_FORMAT = 'AUTO' TIMESTAMP_FORMAT = 'AUTO' NULL_IF = ('\\N');
 ```
+![image](https://user-images.githubusercontent.com/52474199/218968250-1d8308fd-afc3-4c93-90dc-95e977473950.png)
 
 --제공된 txt파일을 data load wizard를 통해 로딩(pdf 자료 참고)
 
