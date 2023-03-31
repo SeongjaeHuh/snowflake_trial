@@ -212,6 +212,7 @@ plant_name varchar(25)
 
 
 3. file format 생성
+> FILE FORMAT = It's a way to tell Snowflake how your data will be structured when it arrives.
 ```
 CREATE FILE FORMAT [DB명].[SCHEMA_명].[FILE_FORMAT명] 
        COMPRESSION = 'AUTO' FIELD_DELIMITER = ',' RECORD_DELIMITER = '\n' 
