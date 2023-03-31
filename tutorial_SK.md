@@ -25,6 +25,7 @@ https://drive.google.com/file/d/1orzu44Gb6lorBxqVaTIeG6zBov3O-TLx/view?usp=shari
 create user user100 password='abc123' default_role = sysadmin default_secondary_roles = ('ALL') must_change_password = true;
 grant role sysadmin to user user100;
 ```
+![image](https://user-images.githubusercontent.com/52474199/229073373-1cb1248c-6749-48e8-a11f-baf0cdc14612.png)
 
 
 ## 1. 환경구성
