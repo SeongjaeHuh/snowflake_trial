@@ -123,7 +123,7 @@ GRANT ROLE NEW_ROLE TO USER USER50;
 
 
 -- UI통해서 만든 DB 삭제
-```
+```sql
 USE WAREHOUSE [username]_WH;
 USE DATABASE [username]_DB;
 USE SCHEMA PUBLIC;
@@ -133,13 +133,13 @@ DROP DATABASE [username]_DB;
 
 -- 명령어 통해서 DB 생성
 
-```
+```sql
 DROP WAREHOUSE [username]_WH;
 CREATE DATABASE [username]_DB;
 ```
 
 -- 테이블 생성 해보기 :
-```
+```sql
 CREATE OR REPLACE TABLE [username]_DB.PUBLIC.[username]_TBL
     (id NUMBER(38,0), name STRING(10),
     country VARCHAR(20), order_date DATE);
@@ -163,7 +163,7 @@ CREATE OR REPLACE TABLE [username]_DB.PUBLIC.[username]_TBL
 
 
 -- 아래 쿼리 실행 해보기
-```
+```sql
 SHOW TABLES;
 
 SELECT COUNT(*) FROM orders;
@@ -184,7 +184,7 @@ ORDER BY o_orderpriority;
 ```
 
 -- 웨어하우스 중지(시작)
-```
+```sql
 ALTER WAREHOUSE [username]_WH SUSPEND; /*RESUME (시작)*/
 ```
 
@@ -194,7 +194,7 @@ ALTER WAREHOUSE [username]_WH SUSPEND; /*RESUME (시작)*/
 ## 1. LAB. LOADING
 
 1. table 생성
-```
+```sql
 use warehouse [username]_wh; -- 생성한 웨어하우스 입력
 
 CREATE DATABASE [username]_VEGE_DB;
@@ -213,7 +213,7 @@ plant_name varchar(25)
 
 3. file format 생성
 > FILE FORMAT = It's a way to tell Snowflake how your data will be structured when it arrives.
-```
+```sql
 CREATE FILE FORMAT [DB명].[SCHEMA_명].[FILE_FORMAT명] 
        COMPRESSION = 'AUTO' FIELD_DELIMITER = ',' RECORD_DELIMITER = '\n' 
        SKIP_HEADER = 1 FIELD_OPTIONALLY_ENCLOSED_BY = '\042' TRIM_SPACE = FALSE 
@@ -242,7 +242,7 @@ CREATE FILE FORMAT [DB명].[SCHEMA_명].[FILE_FORMAT명]
 
 -- WAREHOUSE 및 스키마 설정 
 
-```
+```sql
 USE ROLE SYSADMIN;
 USE WAREHOUSE [username]_WH;
 USE SCHEMA SNOWFLAKE_SAMPLE_DATA.TPCH_SF100;
@@ -251,7 +251,7 @@ USE SCHEMA SNOWFLAKE_SAMPLE_DATA.TPCH_SF100;
 -- 1. Metdata cache 사용 확인
 
 --아래 쿼리 실행
-```
+```sql
 SELECT MIN(l_orderkey), MAX(l_orderkey), COUNT(*) FROM lineitem;
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177480728-b91bd3ab-29fb-4380-b03f-64082534b856.png)
@@ -259,13 +259,13 @@ SELECT MIN(l_orderkey), MAX(l_orderkey), COUNT(*) FROM lineitem;
 -- 아래의 Result 나오는 Pane에서 Query ID 클릭 하여 Pofile 확인. 메타 데이터 cache 사용됨 확인
 
 -- result cache 실습용. Cache_result 사용하지 않도록
-```
+```sql
 ALTER SESSION SET USE_CACHED_RESULT = FALSE;
 ```
 
 -- warehouse 자동 resume 되므로 아래 실행
 
-```
+```sql
 SELECT l_returnflag, l_linestatus,
     SUM(l_quantity) AS sum_qty,
     SUM(l_extendedprice) AS sum_base_price,
@@ -285,7 +285,7 @@ ORDER BY l_returnflag, l_linestatus;
 -- Query ID눌러서 Profile에서 "Percentage Scanned from" 확인
 
 -- WHERE만 조금 바뀐 바뀐 유사한 쿼리 실행.
-```
+```sql
 SELECT l_returnflag, l_linestatus,
     SUM(l_quantity) AS sum_qty,
     SUM(l_extendedprice) AS sum_base_price,
@@ -307,7 +307,7 @@ ORDER BY l_returnflag, l_linestatus;
 
 
 -- warehouse 종료
-```
+```sql
 ALTER WAREHOUSE [username]_WH SUSPEND;
 ```
 
@@ -317,13 +317,13 @@ ALTER WAREHOUSE [username]_WH SUSPEND;
 
 ## 3. query profile 및 explain plan  
 
-```
+```sql
 USE SNOWFLAKE_SAMPLE_DATA.TPCDS_SF10TCL;
 ALTER SESSION SET USE_CACHED_RESULT=FALSE;
 ```
 
 --   LIMIT있는 예제 쿼리 explain plan 실행:
-```
+```sql
 EXPLAIN
 SELECT c_customer_sk,
         c_customer_id, 
@@ -338,7 +338,7 @@ SELECT c_customer_sk,
 ```
 
 --   LIMIT있는 동일한 쿼리 실제 실행:
-```
+```sql
 SELECT c_customer_sk,
         c_customer_id, 
         c_last_name, 
@@ -352,7 +352,7 @@ SELECT c_customer_sk,
 ```
 --   LIMIT 없는 쿼리 explain plan :
 
-```
+```sql
 EXPLAIN
 SELECT c_customer_sk,
         c_customer_id, 
@@ -371,7 +371,7 @@ SELECT c_customer_sk,
 
 
 --   위와 동일한 쿼리 실행 :    
-```
+```sql
 SELECT c_customer_sk,
         c_customer_id, 
         c_last_name, 
@@ -385,7 +385,7 @@ SELECT c_customer_sk,
 
 ## 4. LAB. FUNCTION
 
-```
+```sql
 USE WAREHOUSE [username]_WH;
 CREATE DATABASE IF NOT EXISTS [username]_DB;
 USE [username]_DB.PUBLIC;
@@ -393,14 +393,14 @@ ALTER SESSION SET USE_CACHED_RESULT = FALSE;
 ```
 
 -- 대문자로 바꾸는 function 
-```
+```sql
 SELECT c_name, UPPER(c_name) 
     FROM "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."CUSTOMER";
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177478660-73570f90-5a46-4874-aff4-e50653ead7a7.png)
 
 -- IFF function 확인  
-```
+```sql
 SELECT  
     o_orderkey,
     o_totalprice,
@@ -411,7 +411,7 @@ FROM "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."ORDERS";
 ![image](https://user-images.githubusercontent.com/52474199/177478584-a1f9fed1-5321-4410-8811-b54f7da341f4.png)
 
 -- CASE expression으로 Preffered Customer만 확인
-```
+```sql
 SELECT (c_salutation || ' ' || c_first_name || ' ' || c_last_name) AS full_name,
     CASE
         WHEN c_preferred_cust_flag LIKE 'Y'
@@ -429,24 +429,24 @@ LIMIT 100;
 -- random() function으로 난수 생성
 -- 매번 다른 난수가 나오지만 같은 seed를 줄 경우 같은 결과 
 
-```
+```sql
 SELECT RANDOM() AS random_variable;
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177479532-ea955876-7244-4790-afa4-28c7ab8c80c4.png)
 
-```
+```sql
 SELECT RANDOM(100) AS random_fixed;
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177479572-c116f9fa-c9b7-4832-aec3-00fbf841a0c2.png)
 
 -- time, date 관련 함수
-```
+```sql
 SELECT CURRENT_DATE(), DATE_PART('DAY', CURRENT_DATE()), CURRENT_TIME();
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177488289-f84436ab-ea7c-4763-9568-be2d81892c7e.png)
 
 -- 1시간 동안 쿼리 히스토리 조회
-```
+```sql
 SELECT * FROM TABLE(information_schema.query_history
       (DATEADD('hours', -1, CURRENT_TIMESTAMP()), CURRENT_TIMESTAMP()))
 ORDER BY start_time;
@@ -454,20 +454,20 @@ ORDER BY start_time;
 ![image](https://user-images.githubusercontent.com/52474199/177479698-848db49e-8445-4d1d-b73a-7fc5427149c6.png)
 
 -- 11.3.2  마지막 결과 조회 function
-```
+```sql
 SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177479742-69c1bcb8-11be-4e0d-8c3b-fa13c2d1da9d.png)
 
 
 -- system function (스노우플레이크를 사용하기 위한 허용 IP, port 정보)
-```
+```sql
 SELECT SYSTEM$ALLOWLIST();
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177479809-7706989e-eef9-4c7e-b513-09312def3f24.png)
 
 --  동일한 내용 읽기 쉽게 변환 
-```
+```sql
 SELECT VALUE:type AS type,
        VALUE:host AS host,
        VALUE:port AS port
@@ -477,7 +477,7 @@ FROM TABLE(FLATTEN(INPUT => PARSE_JSON(SYSTEM$ALLOWLIST())));
 
 ### javascript UDF 예제
 -- 영어권 길이 측정 단위 -> 미터로 변환
-```
+```sql
 CREATE OR REPLACE FUNCTION Convert2Meters(lengthInput double, InputScale string )
     RETURNS double
     LANGUAGE javascript
@@ -503,7 +503,7 @@ CREATE OR REPLACE FUNCTION Convert2Meters(lengthInput double, InputScale string 
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177479984-d8b88ab5-f63f-4967-8b3a-f433909098df.png)
 
-```
+```sql
 SELECT Convert2Meters(10, 'yard');
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177480021-92ab1663-58aa-4a2f-9ad0-e0232904935d.png)
@@ -511,7 +511,7 @@ SELECT Convert2Meters(10, 'yard');
 
 ### SQL UDF 예제
 -- 고객 별 주문 수 확인
-```
+```sql
 CREATE OR REPLACE FUNCTION order_cnt(custkey number(38,0))
   RETURNS number(38,0)
   AS 
@@ -520,7 +520,7 @@ CREATE OR REPLACE FUNCTION order_cnt(custkey number(38,0))
   $$;
 ```  
 ![image](https://user-images.githubusercontent.com/52474199/177298252-7fc53bc5-6a68-4939-b9ac-da193f110218.png)
-```  
+```sql
 SELECT C_name, C_address, order_cnt(C_custkey)
 FROM "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."CUSTOMER" LIMIT 10;
 ```
@@ -531,7 +531,7 @@ FROM "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."CUSTOMER" LIMIT 10;
 ### Stored Procedure 예제
 
 -- warehouse size 변경 함수 
-```
+```sql
 create or replace procedure ChangeWHSize(wh_name STRING, wh_size STRING )
     returns string
     language javascript
@@ -580,7 +580,7 @@ create or replace procedure ChangeWHSize(wh_name STRING, wh_size STRING )
 ![image](https://user-images.githubusercontent.com/52474199/177480272-406af3d2-54d3-4b2a-b61f-f24950c844a4.png)
 
 -- 웨어 하우스 사이즈 넣어서 변경
-```
+```sql
 CALL changewhsize ('[username]_wh', 'small');
 ````
 ![image](https://user-images.githubusercontent.com/52474199/177480356-2f80c5ef-bcc2-47df-8f14-5b28ac3a306b.png)
@@ -590,13 +590,13 @@ CALL changewhsize ('[username]_wh', 'small');
 →
 ![image](https://user-images.githubusercontent.com/52474199/177480385-249fbd09-253d-429b-9813-0e77547d192f.png)
 
-```
+```sql
 ALTER WAREHOUSE [username]_WH SET WAREHOUSE_SIZE=XSmall;
 ALTER WAREHOUSE [username]_WH SUSPEND;
 ```
 
 -- JAVASCRIPT STORED PROCEDURE
-```
+```sql
 CREATE OR REPLACE PROCEDURE STPROC1(FLOAT_PARAM1 FLOAT) 
 RETURNS STRING 
 LANGUAGE JAVASCRIPT STRICT 
@@ -614,18 +614,18 @@ AS
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177303428-e61ab3cb-cff7-4047-ac05-8ca207a4fc15.png)
 
-```
+```sql
 CREATE OR REPLACE TABLE STPROC_TEST_TABLE1 (NUM_COL1 FLOAT);
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177303554-0e670666-d700-469e-9e08-1f335538d824.png)
 
-```
+```sql
 CALL STPROC1(3.14::FLOAT);
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177303626-51196c9c-ac3e-424e-a0d4-4f9a0826e0ee.png)
 
 
-```
+```sql
 SELECT * FROM STPROC_TEST_TABLE1;
 ```
 ![image](https://user-images.githubusercontent.com/52474199/177303758-77d4e61c-a9c0-4301-9e87-f95fa630c35e.png)
