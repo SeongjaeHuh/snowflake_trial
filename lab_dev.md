@@ -1,7 +1,9 @@
 ## 01. Training
 
 ### 참고사항
-
+```
+https://quickstarts.snowflake.com/guide/getting_started_with_snowflake/index.html#7
+```
 ```
 [username] -> 본인 부여받은 user_name으로 변경 
 e.g.) login ID: user98 일때,  [username]_WH -> user98_WH 
