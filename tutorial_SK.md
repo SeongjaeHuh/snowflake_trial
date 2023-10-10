@@ -1,6 +1,9 @@
 # Snowflake Training
 
 ```
+--VIRTUAL HANDS-ONLAB - ZERO TO SNOWFLAKE IN 90 MINUTES
+https://quickstarts.snowflake.com/guide/getting_started_with_snowflake/index.html
+
 -- git hub (this page)
 http://bit.ly/3lhZS2m
 
