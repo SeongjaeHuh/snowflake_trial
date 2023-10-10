@@ -26,7 +26,7 @@ MAX_CLUSTER_COUNT = 1
 
 ## 3. Database 생성
 ```sql
-CREATE DATABASE CITIBIKE;
+CREATE or REPLACE DATABASE CITIBIKE;
 
 use database CITIBIKE;
 use schema PUBLIC;
