@@ -1,4 +1,4 @@
-# Data Loading Test 1
+S# Data Loading Test 1
 
 1. "CITIBIKE"."PUBLIC"."TRIPS"
 2. snowflake, TRIPS, 61,468,359 rows1.2 GB
@@ -183,5 +183,6 @@ CREATE FILE FORMAT [DB명].[SCHEMA_명].[FILE_FORMAT명]
 
 ![image](https://user-images.githubusercontent.com/52474199/217207935-a7a385d0-ef43-45bd-ad3c-26fb1754e272.png)
 
-
 ![스크린샷 2023-11-07 오후 4 09 43](https://github.com/SeongjaeHuh/snowflake_trial/assets/52474199/9b240b32-4770-44d0-9420-ece04057fe43)
+
+![스크린샷 2023-11-07 오후 4 12 34](https://github.com/SeongjaeHuh/snowflake_trial/assets/52474199/041f6b12-6c6d-4c40-a33f-d9cd49db9e3f)
