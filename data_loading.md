@@ -180,5 +180,8 @@ CREATE FILE FORMAT [DB명].[SCHEMA_명].[FILE_FORMAT명]
 
 ![image](https://user-images.githubusercontent.com/52474199/177914907-fd64dac4-e92d-4c02-a565-7b2571c81a8d.png)
 
+
 ![image](https://user-images.githubusercontent.com/52474199/217207935-a7a385d0-ef43-45bd-ad3c-26fb1754e272.png)
 
+
+![스크린샷 2023-11-07 오후 4 09 43](https://github.com/SeongjaeHuh/snowflake_trial/assets/52474199/9b240b32-4770-44d0-9420-ece04057fe43)
