@@ -186,3 +186,17 @@ CREATE FILE FORMAT [DB명].[SCHEMA_명].[FILE_FORMAT명]
 ![스크린샷 2023-11-07 오후 4 09 43](https://github.com/SeongjaeHuh/snowflake_trial/assets/52474199/9b240b32-4770-44d0-9420-ece04057fe43)
 
 ![스크린샷 2023-11-07 오후 4 12 34](https://github.com/SeongjaeHuh/snowflake_trial/assets/52474199/041f6b12-6c6d-4c40-a33f-d9cd49db9e3f)
+
+## PUT File into Internal Stage
+```
+use schema hallym.hallym
+create or replace stage test_stage;
+```
+<img width="455" alt="스크린샷 2023-12-05 오후 5 28 12" src="https://github.com/SeongjaeHuh/snowflake_trial/assets/52474199/b89de227-a7f4-4102-9f7a-d831eeec42e2">
+
+```
+put file:///Users/a09423/Downloads/veggies_root_depth_comma_opt_enclosed.txt @test_stage/;
+
+```
+<img width="1317" alt="스크린샷 2023-12-05 오후 5 29 01" src="https://github.com/SeongjaeHuh/snowflake_trial/assets/52474199/ef8317d7-c5c2-4498-a42e-72f602ed8c84">
+
